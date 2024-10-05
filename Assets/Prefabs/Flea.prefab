@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65059783d7d2f19b80a815e381e7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minForce: 1
-  maxForce: 6
+  minForce: 2
+  maxForce: 20
   torque: 70
 --- !u!114 &7380073788889261974
 MonoBehaviour:
