@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,16 +8,17 @@ namespace GTC.Game
     public class PlayerInputHandler : MonoBehaviour
     {
         private PlayerController playerController;
+        private CancellationTokenSource primaryActionSource;
 
         public void OnPrimaryAction(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
             {
-                playerController.OnPrimaryActionStart();
+                playerController.TryStartPrimaryAction();
             }
             else if (ctx.canceled)
             {
-                playerController.OnPrimaryActionEnd();
+                playerController.TryCompletePrimaryAction();
             }
         }
 
