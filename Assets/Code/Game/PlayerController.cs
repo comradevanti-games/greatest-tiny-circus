@@ -39,10 +39,11 @@ namespace GTC.Game
 
         private async void ChargeForce(CancellationToken ct)
         {
+            var startTime = Time.time;
             while (true)
             {
                 await Task.Yield();
-                var t = Mathf.PingPong(Time.time * 2, 1);
+                var t = Mathf.PingPong((Time.time - startTime) * 2, 1);
                 Debug.Log(t);
                 if (!ct.IsCancellationRequested) continue;
 
@@ -56,10 +57,11 @@ namespace GTC.Game
 
         private async void ChooseAngle(CancellationToken ct)
         {
+            var startTime = Time.time;
             while (true)
             {
                 await Task.Yield();
-                var t = Mathf.PingPong(Time.time * 2, 1);
+                var t = Mathf.PingPong((Time.time - startTime) * 2, 1);
                 Debug.Log(t);
                 if (!ct.IsCancellationRequested) continue;
 
