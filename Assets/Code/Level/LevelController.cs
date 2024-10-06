@@ -18,7 +18,7 @@ namespace GTC.Level
         {
             // TODO: Dynamically load level
             var levelData =
-                new LevelData(new Vector2(-2, 3), new Vector2(3, 1));
+                new LevelData(new Vector2(-2, 3), new Vector2(3, 2));
 
             loadedLevel =
                 await Singletons.Get<LevelBuilder>().Build(levelData, ct);
