@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTimeSeconds: 1
   closedX: 10
-  openedX: 500
+  openedX: 400
   startOpen: 0
   leftCurtain: {fileID: 4644236587268238318}
   rightCurtain: {fileID: 7056291265136383519}
