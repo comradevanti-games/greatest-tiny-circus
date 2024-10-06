@@ -42,7 +42,7 @@ namespace GTC.Transition
 
         public async Task Close()
         {
-            if (!isClosed) return;
+            if (isClosed) return;
             isClosed = true;
             await Task.WhenAll(
                 MoveCurtain(leftCurtain, closedX),
@@ -52,7 +52,7 @@ namespace GTC.Transition
 
         public async Task Open()
         {
-            if (isClosed) return;
+            if (!isClosed) return;
             isClosed = false;
             await Task.WhenAll(
                 MoveCurtain(leftCurtain, -openedX),
@@ -67,6 +67,7 @@ namespace GTC.Transition
             DontDestroyOnLoad(gameObject);
             Instance = this;
 
+            isClosed = !startOpen;
             SetCurtain(leftCurtain, startOpen ? -openedX : closedX);
             SetCurtain(rightCurtain, startOpen ? openedX : -closedX);
         }
