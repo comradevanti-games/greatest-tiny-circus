@@ -27,7 +27,8 @@ namespace GTC.Game
 
         private void OnDestroy()
         {
-            Singletons.Get<JumpController>().JumpCommitted -= DoJump;
+            if (Singletons.TryGet<JumpController>() is { } jumpController)
+                jumpController.JumpCommitted -= DoJump;
         }
     }
 }

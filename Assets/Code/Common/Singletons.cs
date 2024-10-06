@@ -26,8 +26,10 @@ namespace GTC
         public static IEnumerable<MonoBehaviour> All() =>
             Host.GetComponents<MonoBehaviour>();
 
+        public static T? TryGet<T>() where T : class => Host.GetComponent<T>();
+
         public static T Get<T>() where T : class =>
-            Host.GetComponent<T>() ??
+            TryGet<T>() ??
             throw new NullReferenceException(
                 $"Singleton of type {typeof(T).Name} could not be found");
     }
