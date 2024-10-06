@@ -2,7 +2,8 @@
     "name": "GTC.Level",
     "rootNamespace": "GTC.Level",
     "references": [
-        "GUID:5705d476d391a24b1be38f7aba263c1f"
+        "GUID:5705d476d391a24b1be38f7aba263c1f",
+        "GUID:b49ef00db3bee36bdb40c8c985022457"
     ],
     "includePlatforms": [
         "Editor",

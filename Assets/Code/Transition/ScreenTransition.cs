@@ -8,26 +8,30 @@ namespace GTC.Transition
     {
         public static Task Close()
         {
-            // TODO: Implement
-            return Task.CompletedTask;
+            return CurtainController.Instance?.Close() ?? Task.CompletedTask;
         }
 
         public static Task Open()
         {
-            // TODO: Implement
-            return Task.CompletedTask;
+            return CurtainController.Instance?.Open() ?? Task.CompletedTask;
         }
 
-        public static async Task DoWithTransition(Action action)
+        public static async Task DoWithTransition(Func<Task> action)
         {
             await Close();
-            action();
+            await action();
             await Open();
         }
 
         public static Task TransitionToScene(string sceneName)
         {
-            return DoWithTransition(() => SceneManager.LoadScene(sceneName));
+            return DoWithTransition(async () =>
+            {
+                var op = SceneManager.LoadSceneAsync(sceneName);
+
+                while (!op!.isDone)
+                    await Task.Yield();
+            });
         }
     }
 }

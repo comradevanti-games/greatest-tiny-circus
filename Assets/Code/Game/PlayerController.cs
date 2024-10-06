@@ -25,6 +25,7 @@ namespace GTC.Game
         private float? angle;
         private float? force;
         private CancellationTokenSource? activeTaskCancellationSource;
+        private FleaAnimator animator;
 
         private JumpPhase CurrentJumpPhase =>
             (angle, force, activeTaskCancellationSource) switch
@@ -51,6 +52,9 @@ namespace GTC.Game
                 var direction = AngleUtils.VectorFromAngle(angle!.Value);
                 PlayerPhysics.LaunchPlayer(gameObject, direction, force!.Value,
                     torque);
+                animator.CurrentMovementSate =
+                    FleaAnimator.MovementState.Flying;
+
                 force = null;
                 angle = null;
                 break;
@@ -120,6 +124,11 @@ namespace GTC.Game
                     CompleteCurrentTask();
                     break;
             }
+        }
+
+        private void Awake()
+        {
+            animator = GetComponent<FleaAnimator>();
         }
     }
 }

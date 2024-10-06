@@ -2,6 +2,8 @@
 
 using System;
 using System.Threading;
+using System.Threading.Tasks;
+using GTC.Transition;
 using UnityEngine;
 
 namespace GTC.Level
@@ -12,7 +14,7 @@ namespace GTC.Level
 
         private Level? loadedLevel;
 
-        private async void LoadLevel(CancellationToken ct)
+        private async Task LoadLevel(CancellationToken ct)
         {
             // TODO: Dynamically load level
             var levelData =
@@ -24,11 +26,14 @@ namespace GTC.Level
             LevelLoaded?.Invoke(loadedLevel);
         }
 
-        public void TryResetLevel()
+        public async void TryResetLevel()
         {
-            if (loadedLevel != null)
-                LevelActions.UnbuildLevel(loadedLevel);
-            LoadLevel(destroyCancellationToken);
+            await ScreenTransition.DoWithTransition(async () =>
+            {
+                if (loadedLevel != null)
+                    LevelActions.UnbuildLevel(loadedLevel);
+                await LoadLevel(destroyCancellationToken);
+            });
         }
     }
 }

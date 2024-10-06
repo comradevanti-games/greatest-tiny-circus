@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5904931525785297392}
   - component: {fileID: 5173205532820724455}
   - component: {fileID: 7150564712688740748}
+  - component: {fileID: -6300154912821364857}
   - component: {fileID: 4804985339484179013}
   m_Layer: 0
   m_Name: Flea
@@ -119,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: 0.42}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.46
+  m_Radius: 0.33
 --- !u!50 &7150564712688740748
 Rigidbody2D:
   serializedVersion: 4
@@ -149,6 +150,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6300154912821364857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336559487940728037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67899d89e13b43ae945faba355f6c847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standingSprite: {fileID: 21300000, guid: 661c9e37da7baf1fc92d2bfd90ee6c0d, type: 3}
+  flyingSprite: {fileID: 21300000, guid: e2be4a3120a7f25ada88d6730133fdab, type: 3}
 --- !u!114 &4804985339484179013
 MonoBehaviour:
   m_ObjectHideFlags: 0
