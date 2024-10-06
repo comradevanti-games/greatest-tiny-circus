@@ -25,7 +25,7 @@ namespace GTC.Game
         private float? angle;
         private float? force;
         private CancellationTokenSource? activeTaskCancellationSource;
-        private FleaAnimator animator;
+        private FleaAnimator animator = null!;
 
         private JumpPhase CurrentJumpPhase =>
             (angle, force, activeTaskCancellationSource) switch
