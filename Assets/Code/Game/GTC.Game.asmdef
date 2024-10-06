@@ -2,7 +2,8 @@
     "name": "GTC.Game",
     "rootNamespace": "GTC.Game",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:5705d476d391a24b1be38f7aba263c1f"
     ],
     "includePlatforms": [
         "Editor",
