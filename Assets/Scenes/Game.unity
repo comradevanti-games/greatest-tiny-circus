@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fleaPrefab: {fileID: 7336559487940728037, guid: a519f97ef56df14e2a0d1a52aa24ab0a, type: 3}
+  targetPrefab: {fileID: 5692609751692324506, guid: aca3c7fddbb904568bc570b9b1d18b89, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

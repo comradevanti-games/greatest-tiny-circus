@@ -7,10 +7,15 @@ namespace GTC.Level
     public class LevelBuilder : MonoBehaviour
     {
         [SerializeField] private GameObject fleaPrefab;
+        [SerializeField] private GameObject targetPrefab;
 
         public async Task Build(LevelData levelData, CancellationToken ct)
         {
-            var flea = Instantiate(fleaPrefab, levelData.FleaPosition,
+            _ = Instantiate(fleaPrefab, levelData.FleaPosition,
+                Quaternion.identity);
+
+            ct.ThrowIfCancellationRequested();
+            _ = Instantiate(targetPrefab, levelData.TargetPosition,
                 Quaternion.identity);
         }
     }
