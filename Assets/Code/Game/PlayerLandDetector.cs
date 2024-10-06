@@ -9,10 +9,13 @@ namespace GTC.Game
         public event Action? PlayerEnteredLandingZone;
         public event Action? PlayerLanded;
 
+        private bool isInLandingZone;
+
         public void OnTriggerEnter2D(Collider2D other)
         {
             // TODO: Check if other is player
 
+            isInLandingZone = true;
             PlayerEnteredLandingZone?.Invoke();
         }
 
@@ -20,13 +23,8 @@ namespace GTC.Game
         {
             // TODO: Check if other is player
 
-            // Make sure collision happened at the top
-            for (var i = 0; i < collision.contactCount; i++)
-            {
-                var contact = collision.GetContact(i);
-                if (contact.point.y >= transform.position.y)
-                    return;
-            }
+            // Only allow landing from the top
+            if (!isInLandingZone) return;
 
             PlayerLanded?.Invoke();
         }
