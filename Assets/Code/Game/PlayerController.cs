@@ -51,6 +51,8 @@ namespace GTC.Game
                 var direction = AngleUtils.VectorFromAngle(angle!.Value);
                 PlayerPhysics.LaunchPlayer(gameObject, direction, force!.Value,
                     torque);
+                force = null;
+                angle = null;
                 break;
             }
         }
