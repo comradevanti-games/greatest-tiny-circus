@@ -18,20 +18,16 @@ namespace GTC.Game
         private void Awake()
         {
             inputActions = new GameInputActions();
-            PlayerController? playerController = null;
+            var jumpController = Singletons.Get<JumpController>();
 
             inputActions.Game.PrimaryAction.performed +=
-                _ => playerController?.TryStartPrimaryAction();
+                _ => jumpController.TryProgressJump();
 
             inputActions.Game.PrimaryAction.canceled +=
-                _ => playerController?.TryCompletePrimaryAction();
+                _ => jumpController.TryProgressJump();
 
             inputActions.Game.Reset.performed += _ =>
                 Singletons.Get<LevelController>().TryResetLevel();
-
-            Singletons.Get<LevelController>().LevelLoaded += level =>
-                playerController =
-                    level.Flea.GetComponent<PlayerController>();
         }
     }
 }

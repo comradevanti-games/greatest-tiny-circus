@@ -176,8 +176,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65059783d7d2f19b80a815e381e7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: 5
-  maxAngle: 85
-  minForce: 2
-  maxForce: 10
   torque: 70

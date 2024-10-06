@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 1431319119}
   - component: {fileID: 1431319116}
   - component: {fileID: 1431319121}
+  - component: {fileID: 1431319122}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Singletons
@@ -628,6 +629,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outOfBoundsY: 1
+--- !u!114 &1431319122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431319114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde795ee1c4e4d2b84152cf26bab6e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAngle: 10
+  maxAngle: 80
+  minForce: 1
+  maxForce: 10
+  torque: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
