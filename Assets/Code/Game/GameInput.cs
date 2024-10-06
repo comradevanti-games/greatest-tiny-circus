@@ -1,16 +1,12 @@
 #nullable enable
 
-using System;
+using GTC.Level;
 using UnityEngine;
 
 namespace GTC.Game
 {
     public class GameInput : MonoBehaviour
     {
-        public event Action? PrimaryActionStarted;
-        public event Action? PrimaryActionCompleted;
-        public event Action? Reset;
-
         private GameInputActions inputActions = null!;
 
 
@@ -22,12 +18,20 @@ namespace GTC.Game
         private void Awake()
         {
             inputActions = new GameInputActions();
+            PlayerController? playerController = null;
 
             inputActions.Game.PrimaryAction.performed +=
-                _ => PrimaryActionStarted?.Invoke();
+                _ => playerController?.TryStartPrimaryAction();
+
             inputActions.Game.PrimaryAction.canceled +=
-                _ => PrimaryActionCompleted?.Invoke();
-            inputActions.Game.Reset.performed += _ => Reset?.Invoke();
+                _ => playerController?.TryCompletePrimaryAction();
+
+            inputActions.Game.Reset.performed += _ =>
+                Singletons.Get<LevelController>().TryResetLevel();
+
+            Singletons.Get<LevelController>().LevelLoaded += level =>
+                playerController =
+                    level.Flea.GetComponent<PlayerController>();
         }
     }
 }
