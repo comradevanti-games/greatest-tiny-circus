@@ -1,0 +1,19 @@
+{
+    "name": "GTC.Transition",
+    "rootNamespace": "GTC.Transition",
+    "references": [
+        "GUID:5705d476d391a24b1be38f7aba263c1f"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
