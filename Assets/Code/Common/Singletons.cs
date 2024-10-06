@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GTC
@@ -9,17 +10,25 @@ namespace GTC
     {
         private static GameObject? host;
 
-        public static T Get<T>() where T : class
+        private static GameObject Host
         {
-            if (host == null || !host)
-                host = GameObject.FindWithTag("Singletons");
-            if (host == null)
-                throw new NullReferenceException(
-                    "Singletons could not be found");
-
-            return host.GetComponent<T>() ??
-                   throw new NullReferenceException(
-                       $"Singleton of type {typeof(T).Name} could not be found");
+            get
+            {
+                if (host == null || !host)
+                    host = GameObject.FindWithTag("Singletons");
+                if (host == null)
+                    throw new NullReferenceException(
+                        "Singletons could not be found");
+                return host;
+            }
         }
+
+        public static IEnumerable<MonoBehaviour> All() =>
+            Host.GetComponents<MonoBehaviour>();
+
+        public static T Get<T>() where T : class =>
+            Host.GetComponent<T>() ??
+            throw new NullReferenceException(
+                $"Singleton of type {typeof(T).Name} could not be found");
     }
 }

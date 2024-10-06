@@ -9,14 +9,18 @@ namespace GTC.Level
         [SerializeField] private GameObject fleaPrefab;
         [SerializeField] private GameObject targetPrefab;
 
-        public async Task Build(LevelData levelData, CancellationToken ct)
+        public async Task<Level> Build(LevelData levelData,
+            CancellationToken ct)
         {
-            _ = Instantiate(fleaPrefab, levelData.FleaPosition,
+            var flea = Instantiate(fleaPrefab, levelData.FleaPosition,
                 Quaternion.identity);
 
+            await Task.Yield();
             ct.ThrowIfCancellationRequested();
-            _ = Instantiate(targetPrefab, levelData.TargetPosition,
+            var jumpTarget = Instantiate(targetPrefab, levelData.TargetPosition,
                 Quaternion.identity);
+
+            return new Level(flea, jumpTarget);
         }
     }
 }

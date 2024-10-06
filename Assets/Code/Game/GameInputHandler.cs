@@ -1,17 +1,24 @@
-using System.Threading;
+#nullable enable
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GTC.Game
 {
-    [RequireComponent(typeof(PlayerController))]
-    public class PlayerInputHandler : MonoBehaviour
+    public class GameInputHandler : MonoBehaviour, ILevelLifecycleAware
     {
-        private PlayerController playerController;
-        private CancellationTokenSource primaryActionSource;
+        private PlayerController? playerController;
+
+
+        public void OnBuilt(Level.Level level)
+        {
+            playerController = level.Flea.GetComponent<PlayerController>();
+        }
 
         public void OnPrimaryAction(InputAction.CallbackContext ctx)
         {
+            if (playerController == null) return;
+
             if (ctx.performed)
             {
                 playerController.TryStartPrimaryAction();
@@ -20,11 +27,6 @@ namespace GTC.Game
             {
                 playerController.TryCompletePrimaryAction();
             }
-        }
-
-        private void Awake()
-        {
-            playerController = GetComponent<PlayerController>();
         }
     }
 }
