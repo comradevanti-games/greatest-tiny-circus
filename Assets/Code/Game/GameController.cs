@@ -10,7 +10,7 @@ namespace GTC.Game
         {
             // TODO: Dynamically load level
             var levelData =
-                new LevelData(new Vector2(0.5f, 3), new Vector2(10, 1));
+                new LevelData(new Vector2(-2, 3), new Vector2(3, 1));
 
             await Singletons.Get<LevelBuilder>().Build(levelData, ct);
         }
