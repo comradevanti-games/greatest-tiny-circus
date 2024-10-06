@@ -12,15 +12,17 @@ namespace GTC.Level
         public async Task<Level> Build(LevelData levelData,
             CancellationToken ct)
         {
+            var root = new GameObject("Level");
+
             var flea = Instantiate(fleaPrefab, levelData.FleaPosition,
-                Quaternion.identity);
+                Quaternion.identity, root.transform);
 
             await Task.Yield();
             ct.ThrowIfCancellationRequested();
             var jumpTarget = Instantiate(targetPrefab, levelData.TargetPosition,
-                Quaternion.identity);
+                Quaternion.identity, root.transform);
 
-            return new Level(flea, jumpTarget);
+            return new Level(root, flea, jumpTarget);
         }
     }
 }

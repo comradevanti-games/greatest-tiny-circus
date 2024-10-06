@@ -2,5 +2,8 @@ using UnityEngine;
 
 namespace GTC.Level
 {
-    public record Level(GameObject Flea, GameObject JumpTarget);
+    public record Level(
+        GameObject Root,
+        GameObject Flea,
+        GameObject JumpTarget);
 }

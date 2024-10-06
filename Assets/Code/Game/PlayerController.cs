@@ -96,7 +96,7 @@ namespace GTC.Game
             activeTaskCancellationSource = null;
         }
 
-        public void TryStartPrimaryAction()
+        private void TryStartPrimaryAction()
         {
             switch (CurrentJumpPhase)
             {
@@ -109,7 +109,7 @@ namespace GTC.Game
             }
         }
 
-        public void TryCompletePrimaryAction()
+        private void TryCompletePrimaryAction()
         {
             switch (CurrentJumpPhase)
             {
@@ -118,6 +118,13 @@ namespace GTC.Game
                     CompleteCurrentTask();
                     break;
             }
+        }
+
+        private void Awake()
+        {
+            var gameInput = Singletons.Get<GameInput>();
+            gameInput.PrimaryActionStarted += TryStartPrimaryAction;
+            gameInput.PrimaryActionCompleted += TryCompletePrimaryAction;
         }
     }
 }

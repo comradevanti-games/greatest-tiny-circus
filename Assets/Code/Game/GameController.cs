@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using GTC.Level;
 using UnityEngine;
@@ -9,24 +8,27 @@ namespace GTC.Game
     {
         private async void LoadLevel(CancellationToken ct)
         {
-            var lifecycleAware = Singletons.All().OfType<ILevelLifecycleAware>()
-                .ToHashSet();
-
             // TODO: Dynamically load level
             var levelData =
                 new LevelData(new Vector2(-2, 3), new Vector2(3, 1));
 
             var level =
                 await Singletons.Get<LevelBuilder>().Build(levelData, ct);
+        }
 
-            ct.ThrowIfCancellationRequested();
-            foreach (var it in lifecycleAware)
-                it.OnBuilt(level);
+        public void ResetLevel()
+        {
+        }
+
+        private void Start()
+        {
+            LoadLevel(destroyCancellationToken);
         }
 
         private void Awake()
         {
-            LoadLevel(destroyCancellationToken);
+            var gameInput = Singletons.Get<GameInput>();
+            gameInput.Reset += ResetLevel;
         }
     }
 }
