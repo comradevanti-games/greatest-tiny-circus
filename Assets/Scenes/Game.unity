@@ -539,7 +539,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1258803751}
   - component: {fileID: 1258803750}
-  - component: {fileID: 1258803752}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
@@ -607,18 +606,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1258803752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258803749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9dbb8894c14208a61a5edc63bb779a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1431319114
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15106624925d4aceab6a3e4db53a29d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorCollisionDetector: {fileID: 1258803752}
 --- !u!114 &1431319117
 MonoBehaviour:
   m_ObjectHideFlags: 0

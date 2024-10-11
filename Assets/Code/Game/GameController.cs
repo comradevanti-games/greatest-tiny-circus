@@ -1,3 +1,4 @@
+using GTC.Flea;
 using GTC.Level;
 using UnityEngine;
 
@@ -5,23 +6,24 @@ namespace GTC.Game
 {
     public class GameController : MonoBehaviour
     {
-        [SerializeField] private Collision2DDetector floorCollisionDetector;
-
         private void Start()
         {
             Singletons.Get<LevelController>()
                 .TryResetLevel();
         }
 
-        private void OnPlayerHitFloor()
-        {
-            Singletons.Get<LevelController>().TryResetLevel();
-        }
-
         private void Awake()
         {
-            floorCollisionDetector.CollisionHappened += _ =>
-                OnPlayerHitFloor();
+            Singletons.Get<LevelController>().LevelLoaded += level =>
+            {
+                level.Flea.GetComponent<FleaStateKeeper>().fleaStateChanged
+                    .AddListener(fleaState =>
+                    {
+                        if (fleaState is not (FleaState.OnFloor
+                            or FleaState.OnTarget)) return;
+                        Singletons.Get<LevelController>().TryResetLevel();
+                    });
+            };
         }
     }
 }
