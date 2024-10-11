@@ -10,7 +10,7 @@ namespace GTC.Flea
         [SerializeField] private Sprite flyingSprite = null!;
         [SerializeField] private Sprite onFloorSprite = null!;
 
-        private Rigidbody2D rigidbody = null!;
+        private new Rigidbody2D rigidbody = null!;
         private SpriteRenderer spriteRenderer = null!;
 
 
