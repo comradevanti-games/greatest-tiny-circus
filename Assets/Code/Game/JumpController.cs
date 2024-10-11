@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace GTC.Game
 {
-    public record Jump(float Force, Vector2 Direction);
-
     public class JumpController : MonoBehaviour
     {
         private abstract record JumpState
@@ -28,8 +26,8 @@ namespace GTC.Game
         }
 
 
-        public event Action<Jump>? JumpChanged;
-        public event Action<Jump>? JumpCommitted;
+        public event Action<Launch>? JumpChanged;
+        public event Action<Launch>? JumpCommitted;
 
         [SerializeField] private float minAngle;
         [SerializeField] private float maxAngle;
@@ -43,7 +41,7 @@ namespace GTC.Game
         private JumpState StartAngleChoose()
         {
             var initialDirection = AngleUtils.VectorFromAngle(minAngle);
-            JumpChanged?.Invoke(new Jump(maxForce, initialDirection));
+            JumpChanged?.Invoke(new Launch(maxForce, initialDirection));
             return new JumpState.ChooseAngle(DateTime.Now,
                 initialDirection);
         }
@@ -55,13 +53,16 @@ namespace GTC.Game
 
         private JumpState StartForceChoose(Vector2 direction)
         {
-            JumpChanged?.Invoke(new Jump(maxForce, direction));
+            JumpChanged?.Invoke(new Launch(maxForce, direction));
             return new JumpState.ChooseForce(DateTime.Now, direction, maxForce);
         }
 
         private JumpState DoJump(Vector2 direction, float force)
         {
-            JumpCommitted?.Invoke(new Jump(force, direction));
+            JumpCommitted?.Invoke(new Launch(force, direction));
+
+            FindObjectOfType<Launchable>()
+                ?.Launch(new Launch(force, direction));
 
             return new JumpState.PostJump();
         }
@@ -72,7 +73,7 @@ namespace GTC.Game
             var t = Mathf.PingPong(delta, 1);
             var newForce = Mathf.Lerp(minForce, maxForce, t);
 
-            JumpChanged?.Invoke(new Jump(newForce, state.Direction));
+            JumpChanged?.Invoke(new Launch(newForce, state.Direction));
 
             return state with { Force = newForce };
         }
@@ -84,7 +85,7 @@ namespace GTC.Game
             var angle = Mathf.Lerp(minAngle, maxAngle, t);
             var direction = AngleUtils.VectorFromAngle(angle);
 
-            JumpChanged?.Invoke(new Jump(maxForce, direction));
+            JumpChanged?.Invoke(new Launch(maxForce, direction));
 
             return state with { Direction = direction };
         }

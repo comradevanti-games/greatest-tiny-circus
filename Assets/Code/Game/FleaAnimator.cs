@@ -29,13 +29,18 @@ namespace GTC.Game
             };
         }
 
-        public MovementState CurrentMovementSate
+        private MovementState CurrentMovementSate
         {
             set
             {
                 currentMovementSate = value;
                 UpdateSprite();
             }
+        }
+
+        public void OnLaunched()
+        {
+            CurrentMovementSate = MovementState.Flying;
         }
 
         private void Awake()

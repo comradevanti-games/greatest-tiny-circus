@@ -9,15 +9,15 @@ namespace GTC.Game
         private SpriteRenderer spriteRenderer;
         private JumpController jumpController;
 
-        private void OnJumpChanged(Jump jump)
+        private void OnJumpChanged(Launch launch)
         {
             spriteRenderer.enabled = true;
-            transform.right = jump.Direction;
+            transform.right = launch.Direction;
             transform.localScale =
-                Vector3.one * (jump.Force * forceToScaleMultiplier);
+                Vector3.one * (launch.Force * forceToScaleMultiplier);
         }
 
-        private void OnJumpCommitted(Jump _)
+        private void OnJumpCommitted(Launch _)
         {
             spriteRenderer.enabled = false;
         }
