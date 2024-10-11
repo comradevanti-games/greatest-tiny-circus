@@ -725,7 +725,7 @@ MonoBehaviour:
   minAngle: 10
   maxAngle: 80
   minForce: 1
-  maxForce: 10
+  maxForce: 20
   torque: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
