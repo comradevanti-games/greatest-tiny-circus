@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GTC.Transition;
 using UnityEngine;
+using static GTC.Level.LevelGen;
 
 namespace GTC.Level
 {
@@ -12,13 +13,18 @@ namespace GTC.Level
     {
         public event Action<Level>? LevelLoaded;
 
+        [Header("Level gen settings")] [SerializeField]
+        private float xExtent;
+
+        [SerializeField] private float minY;
+        [SerializeField] private float maxY;
+
         private Level? loadedLevel;
 
         private async Task LoadLevel(CancellationToken ct)
         {
-            // TODO: Dynamically load level
-            var levelData =
-                new LevelData(new Vector2(-2, 3), new Vector2(3, 2));
+            var levelData = GenerateLevel(new Vector2(-xExtent, minY),
+                new Vector2(xExtent, maxY));
 
             loadedLevel =
                 await Singletons.Get<LevelBuilder>().Build(levelData, ct);
