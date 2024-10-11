@@ -196,6 +196,8 @@ MonoBehaviour:
   hitTarget:
     m_PersistentCalls:
       m_Calls: []
+  downSensitivity: 0.5
+  minForce: 1
 --- !u!114 &2866801920898771595
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,12 +10,18 @@ namespace GTC.Flea
     {
         public UnityEvent hitTarget = new UnityEvent();
 
+        [SerializeField] private float downSensitivity;
+        [SerializeField] private float minForce;
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.gameObject.CompareTag("Target")) return;
 
+            if (collision.relativeVelocity.magnitude < minForce) return;
+
             var hitDirection = -collision.relativeVelocity.normalized;
-            var isDown = Vector2.Dot(Vector2.down, hitDirection) > 0.5f;
+            var isDown = Vector2.Dot(Vector2.down, hitDirection) >
+                         downSensitivity;
 
             if (!isDown) return;
             hitTarget.Invoke();
