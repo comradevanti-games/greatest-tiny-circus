@@ -3,6 +3,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using static GTC.AsyncUtils;
 
 namespace GTC.Transition
 {
@@ -30,13 +31,8 @@ namespace GTC.Transition
             CancellationToken ct)
         {
             var startX = curtain.anchoredPosition.x;
-            var t = 0f;
-
-            while (t < 1)
+            await foreach (var t in SampleRangeAsync(0, 1, moveTimeSeconds, ct))
             {
-                await Task.Yield();
-                ct.ThrowIfCancellationRequested();
-                t = Mathf.MoveTowards(t, 1, Time.deltaTime / moveTimeSeconds);
                 var x = Mathf.SmoothStep(startX, targetX, t);
                 SetCurtain(curtain, x);
             }
