@@ -4,6 +4,8 @@ namespace GTC.Game
 {
     public class JumpVisualizer : MonoBehaviour
     {
+        [SerializeField] private float forceToScaleMultiplier;
+
         private SpriteRenderer spriteRenderer;
         private JumpController jumpController;
 
@@ -11,7 +13,8 @@ namespace GTC.Game
         {
             spriteRenderer.enabled = true;
             transform.right = jump.Direction;
-            transform.localScale = Vector3.one * jump.Force / 5f;
+            transform.localScale =
+                Vector3.one * (jump.Force * forceToScaleMultiplier);
         }
 
         private void OnJumpCommitted(Jump _)
