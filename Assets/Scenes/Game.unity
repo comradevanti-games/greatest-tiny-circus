@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15106624925d4aceab6a3e4db53a29d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorCollisionDetector: {fileID: 1258803752}
 --- !u!114 &1431319117
 MonoBehaviour:
   m_ObjectHideFlags: 0
