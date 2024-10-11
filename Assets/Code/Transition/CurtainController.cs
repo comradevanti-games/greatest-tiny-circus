@@ -1,5 +1,6 @@
 #nullable enable
 
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -25,7 +26,8 @@ namespace GTC.Transition
             curtain.anchoredPosition = new Vector2(x, 0);
         }
 
-        private async Task MoveCurtain(RectTransform curtain, float targetX)
+        private async Task MoveCurtain(RectTransform curtain, float targetX,
+            CancellationToken ct)
         {
             var startX = curtain.anchoredPosition.x;
             var t = 0f;
@@ -33,7 +35,7 @@ namespace GTC.Transition
             while (t < 1)
             {
                 await Task.Yield();
-                destroyCancellationToken.ThrowIfCancellationRequested();
+                ct.ThrowIfCancellationRequested();
                 t = Mathf.MoveTowards(t, 1, Time.deltaTime / moveTimeSeconds);
                 var x = Mathf.SmoothStep(startX, targetX, t);
                 SetCurtain(curtain, x);
@@ -45,8 +47,8 @@ namespace GTC.Transition
             if (isClosed) return;
             isClosed = true;
             await Task.WhenAll(
-                MoveCurtain(leftCurtain, closedX),
-                MoveCurtain(rightCurtain, -closedX)
+                MoveCurtain(leftCurtain, closedX, destroyCancellationToken),
+                MoveCurtain(rightCurtain, -closedX, destroyCancellationToken)
             );
         }
 
@@ -55,8 +57,8 @@ namespace GTC.Transition
             if (!isClosed) return;
             isClosed = false;
             await Task.WhenAll(
-                MoveCurtain(leftCurtain, -openedX),
-                MoveCurtain(rightCurtain, openedX)
+                MoveCurtain(leftCurtain, -openedX, destroyCancellationToken),
+                MoveCurtain(rightCurtain, openedX, destroyCancellationToken)
             );
         }
 
