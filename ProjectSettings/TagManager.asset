@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Singletons
   - Floor
+  - Target
   layers:
   - Default
   - TransparentFX

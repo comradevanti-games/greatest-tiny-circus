@@ -9,5 +9,7 @@ namespace GTC.Flea
         public record Flying : FleaState;
         
         public record OnFloor : FleaState;
+        
+        public record OnTarget : FleaState;
     }
 }

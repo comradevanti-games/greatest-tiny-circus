@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7150564712688740748}
   - component: {fileID: -7852612640183482966}
   - component: {fileID: 7721323354114968753}
+  - component: {fileID: 2890200456051900110}
   - component: {fileID: 2866801920898771595}
   - component: {fileID: 2644757010370699397}
   - component: {fileID: -6300154912821364857}
@@ -180,6 +181,21 @@ MonoBehaviour:
   floorHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2890200456051900110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336559487940728037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60558edbc08c4d1a9af117b8dbfd2a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTarget:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2866801920898771595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,4 +241,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standingSprite: {fileID: 21300000, guid: 227da77e6496e52649b6b2d8097b84ea, type: 3}
   flyingSprite: {fileID: 21300000, guid: 2765049765cfc4882bc56d289cf538d9, type: 3}
-  onFloorSprite: {fileID: 21300000, guid: dc97b06e6178a49018d7d49363017beb, type: 3}
+  failedSprite: {fileID: 21300000, guid: dc97b06e6178a49018d7d49363017beb, type: 3}
+  successSprite: {fileID: 21300000, guid: 89308975f796d3a5ab371b2178b79fba, type: 3}

@@ -8,7 +8,8 @@ namespace GTC.Flea
     {
         [SerializeField] private Sprite standingSprite = null!;
         [SerializeField] private Sprite flyingSprite = null!;
-        [SerializeField] private Sprite onFloorSprite = null!;
+        [SerializeField] private Sprite failedSprite = null!;
+        [SerializeField] private Sprite successSprite = null!;
 
         private new Rigidbody2D rigidbody = null!;
         private SpriteRenderer spriteRenderer = null!;
@@ -20,15 +21,15 @@ namespace GTC.Flea
             {
                 FleaState.PreparingForJump => standingSprite,
                 FleaState.Flying => flyingSprite,
-                FleaState.OnFloor => onFloorSprite,
+                FleaState.OnFloor => failedSprite,
+                FleaState.OnTarget => successSprite,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            if (state is FleaState.OnFloor)
-            {
-                rigidbody.bodyType = RigidbodyType2D.Static;
-                transform.right = Vector3.right;
-            }
+            if (state is not (FleaState.OnFloor or FleaState.OnTarget)) return;
+            
+            rigidbody.bodyType = RigidbodyType2D.Static;
+            transform.right = Vector3.right;
         }
 
         private void Awake()

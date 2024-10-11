@@ -7,6 +7,7 @@ namespace GTC.Flea
 {
     [RequireComponent(typeof(Launchable))]
     [RequireComponent(typeof(FloorHitDetector))]
+    [RequireComponent(typeof(TargetHitDetector))]
     public class FleaStateKeeper : MonoBehaviour
     {
         public UnityEvent<FleaState> fleaStateChanged =
@@ -39,6 +40,9 @@ namespace GTC.Flea
 
             GetComponent<FloorHitDetector>().floorHit.AddListener(() =>
                 CurrentState = new FleaState.OnFloor());
+
+            GetComponent<TargetHitDetector>().hitTarget.AddListener(() =>
+                CurrentState = new FleaState.OnTarget());
         }
     }
 }
