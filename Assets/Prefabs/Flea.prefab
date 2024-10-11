@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7721323354114968753}
   - component: {fileID: 2890200456051900110}
   - component: {fileID: 2866801920898771595}
+  - component: {fileID: -908386130404306915}
   - component: {fileID: 2644757010370699397}
   - component: {fileID: -6300154912821364857}
   m_Layer: 0
@@ -214,6 +215,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   torque: 70
+--- !u!114 &-908386130404306915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336559487940728037}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9061deebf05a4ce9ac66f548ac6271c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standstillStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  thresholdSpeed: 0.05
+  standstillTimeSeconds: 1
 --- !u!114 &2644757010370699397
 MonoBehaviour:
   m_ObjectHideFlags: 0

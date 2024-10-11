@@ -21,12 +21,12 @@ namespace GTC.Flea
             {
                 FleaState.PreparingForJump => standingSprite,
                 FleaState.Flying => flyingSprite,
-                FleaState.OnFloor => failedSprite,
-                FleaState.OnTarget => successSprite,
+                FleaState.Failed => failedSprite,
+                FleaState.Success => successSprite,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            if (state is not (FleaState.OnFloor or FleaState.OnTarget)) return;
+            if (state is not (FleaState.Failed or FleaState.Success)) return;
             
             rigidbody.bodyType = RigidbodyType2D.Static;
             transform.right = Vector3.right;
@@ -37,7 +37,7 @@ namespace GTC.Flea
             spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody = GetComponent<Rigidbody2D>();
 
-            GetComponent<FleaStateKeeper>().fleaStateChanged
+            GetComponent<FleaController>().fleaStateChanged
                 .AddListener(SetSpriteFor);
         }
     }

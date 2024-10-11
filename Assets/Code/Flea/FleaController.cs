@@ -8,7 +8,7 @@ namespace GTC.Flea
     [RequireComponent(typeof(Launchable))]
     [RequireComponent(typeof(FloorHitDetector))]
     [RequireComponent(typeof(TargetHitDetector))]
-    public class FleaStateKeeper : MonoBehaviour
+    public class FleaController : MonoBehaviour
     {
         public UnityEvent<FleaState> fleaStateChanged =
             new UnityEvent<FleaState>();
@@ -36,13 +36,19 @@ namespace GTC.Flea
         private void Awake()
         {
             GetComponent<Launchable>().launched.AddListener(() =>
-                CurrentState = new FleaState.Flying());
+            {
+                GetComponent<StandstillDetector>().enabled = true;
+                CurrentState = new FleaState.Flying();
+            });
 
             GetComponent<FloorHitDetector>().floorHit.AddListener(() =>
-                CurrentState = new FleaState.OnFloor());
+                CurrentState = new FleaState.Failed());
 
             GetComponent<TargetHitDetector>().hitTarget.AddListener(() =>
-                CurrentState = new FleaState.OnTarget());
+                CurrentState = new FleaState.Success());
+
+            GetComponent<StandstillDetector>().standstillStarted.AddListener(
+                () => CurrentState = new FleaState.Failed());
         }
     }
 }

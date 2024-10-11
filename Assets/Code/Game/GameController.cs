@@ -16,11 +16,11 @@ namespace GTC.Game
         {
             Singletons.Get<LevelController>().LevelLoaded += level =>
             {
-                level.Flea.GetComponent<FleaStateKeeper>().fleaStateChanged
+                level.Flea.GetComponent<FleaController>().fleaStateChanged
                     .AddListener(fleaState =>
                     {
-                        if (fleaState is not (FleaState.OnFloor
-                            or FleaState.OnTarget)) return;
+                        if (fleaState is not (FleaState.Failed
+                            or FleaState.Success)) return;
                         Singletons.Get<LevelController>().TryResetLevel();
                     });
             };

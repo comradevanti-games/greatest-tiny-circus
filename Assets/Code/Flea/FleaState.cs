@@ -7,9 +7,9 @@ namespace GTC.Flea
         public record PreparingForJump : FleaState;
 
         public record Flying : FleaState;
-        
-        public record OnFloor : FleaState;
-        
-        public record OnTarget : FleaState;
+
+        public record Failed : FleaState;
+
+        public record Success : FleaState;
     }
 }
