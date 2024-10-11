@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GTC.Game
+namespace GTC.Flea
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class FleaAnimator : MonoBehaviour

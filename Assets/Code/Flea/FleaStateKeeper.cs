@@ -3,16 +3,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GTC.Game
+namespace GTC.Flea
 {
-    public abstract record FleaState
-    {
-        public record PreparingForJump : FleaState;
-
-        public record Flying : FleaState;
-    }
-
-
     public class FleaStateKeeper : MonoBehaviour
     {
         public UnityEvent<FleaState> fleaStateChanged =
@@ -41,5 +33,12 @@ namespace GTC.Game
             GetComponent<Launchable>().launched.AddListener(() =>
                 CurrentState = new FleaState.Flying());
         }
+    }
+
+    public abstract record FleaState
+    {
+        public record PreparingForJump : FleaState;
+
+        public record Flying : FleaState;
     }
 }
