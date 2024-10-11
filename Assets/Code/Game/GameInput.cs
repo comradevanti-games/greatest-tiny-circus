@@ -1,6 +1,7 @@
 #nullable enable
 
 using GTC.Level;
+using GTC.Transition;
 using UnityEngine;
 
 namespace GTC.Game
@@ -9,11 +10,6 @@ namespace GTC.Game
     {
         private GameInputActions inputActions = null!;
 
-
-        private void Start()
-        {
-            inputActions.Enable();
-        }
 
         private void Awake()
         {
@@ -28,6 +24,11 @@ namespace GTC.Game
 
             inputActions.Game.Reset.performed += _ =>
                 Singletons.Get<LevelController>().TryResetLevel();
+
+            ScreenTransition.OnTransitionStarted +=
+                () => inputActions.Disable();
+            ScreenTransition.OnTransitionCompleted +=
+                () => inputActions.Enable();
         }
     }
 }
