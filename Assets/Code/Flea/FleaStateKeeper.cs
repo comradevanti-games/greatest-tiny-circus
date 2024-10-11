@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 namespace GTC.Flea
 {
+    [RequireComponent(typeof(Launchable))]
+    [RequireComponent(typeof(FloorHitDetector))]
     public class FleaStateKeeper : MonoBehaviour
     {
         public UnityEvent<FleaState> fleaStateChanged =
@@ -18,6 +20,8 @@ namespace GTC.Flea
             get => currentState;
             set
             {
+                if (value == currentState) return;
+
                 currentState = value;
                 fleaStateChanged.Invoke(currentState);
             }
@@ -32,13 +36,9 @@ namespace GTC.Flea
         {
             GetComponent<Launchable>().launched.AddListener(() =>
                 CurrentState = new FleaState.Flying());
+
+            GetComponent<FloorHitDetector>().floorHit.AddListener(() =>
+                CurrentState = new FleaState.OnFloor());
         }
-    }
-
-    public abstract record FleaState
-    {
-        public record PreparingForJump : FleaState;
-
-        public record Flying : FleaState;
     }
 }
