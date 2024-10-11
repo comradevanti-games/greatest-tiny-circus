@@ -9,7 +9,8 @@ namespace GTC
 
     public class Launchable : MonoBehaviour
     {
-        [SerializeField] private UnityEvent launched = new UnityEvent();
+        public UnityEvent launched = new UnityEvent();
+        
         [SerializeField] private float torque;
 
         private new Rigidbody2D rigidbody = null!;

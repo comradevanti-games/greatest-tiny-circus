@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: -5904931525785297392}
   - component: {fileID: 5173205532820724455}
   - component: {fileID: 7150564712688740748}
-  - component: {fileID: -6300154912821364857}
   - component: {fileID: 2866801920898771595}
+  - component: {fileID: 2644757010370699397}
+  - component: {fileID: -6300154912821364857}
   m_Layer: 0
   m_Name: Flea
   m_TagString: Untagged
@@ -150,20 +151,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6300154912821364857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336559487940728037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67899d89e13b43ae945faba355f6c847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standingSprite: {fileID: 21300000, guid: 227da77e6496e52649b6b2d8097b84ea, type: 3}
-  flyingSprite: {fileID: 21300000, guid: 2765049765cfc4882bc56d289cf538d9, type: 3}
 --- !u!114 &2866801920898771595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,17 +165,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launched:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -6300154912821364857}
-        m_TargetAssemblyTypeName: GTC.Game.FleaAnimator, GTC.Game
-        m_MethodName: OnLaunched
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   torque: 70
+--- !u!114 &2644757010370699397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336559487940728037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52cbf4cfcb534c82984fa50ae64859da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fleaStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-6300154912821364857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336559487940728037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67899d89e13b43ae945faba355f6c847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standingSprite: {fileID: 21300000, guid: 227da77e6496e52649b6b2d8097b84ea, type: 3}
+  flyingSprite: {fileID: 21300000, guid: 2765049765cfc4882bc56d289cf538d9, type: 3}
