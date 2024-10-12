@@ -1,0 +1,21 @@
+{
+    "name": "GTC.Menu",
+    "rootNamespace": "GTC.Menu",
+    "references": [
+        "GUID:5705d476d391a24b1be38f7aba263c1f",
+        "GUID:d5f383ae1f785fe1f822a0ba0332c002",
+        "GUID:b49ef00db3bee36bdb40c8c985022457"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -30,15 +30,10 @@ namespace GTC.Transition
             OnTransitionCompleted?.Invoke();
         }
 
-        public static Task TransitionToScene(string sceneName)
+        public static async Task TransitionToScene(string sceneName)
         {
-            return DoWithTransition(async () =>
-            {
-                var op = SceneManager.LoadSceneAsync(sceneName);
-
-                while (!op!.isDone)
-                    await Task.Yield();
-            });
+            await Close();
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
