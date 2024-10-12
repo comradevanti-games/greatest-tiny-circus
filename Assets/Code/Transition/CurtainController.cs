@@ -60,7 +60,11 @@ namespace GTC.Transition
 
         private void Awake()
         {
-            if (Instance != null) Destroy(gameObject);
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
             DontDestroyOnLoad(gameObject);
             Instance = this;
