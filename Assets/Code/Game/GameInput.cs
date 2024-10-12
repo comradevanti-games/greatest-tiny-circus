@@ -25,6 +25,9 @@ namespace GTC.Game
             inputActions.Game.Reset.performed += _ =>
                 Singletons.Get<LevelController>().TryResetLevel();
 
+            inputActions.Game.Exit.performed += _ =>
+                Singletons.Get<GameController>().GoBackToMenu();
+
             ScreenTransition.OnTransitionStarted +=
                 () => inputActions.Disable();
             ScreenTransition.OnTransitionCompleted +=

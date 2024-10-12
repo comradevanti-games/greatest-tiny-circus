@@ -1,11 +1,17 @@
 using GTC.Flea;
 using GTC.Level;
+using GTC.Transition;
 using UnityEngine;
 
 namespace GTC.Game
 {
     public class GameController : MonoBehaviour
     {
+        public void GoBackToMenu()
+        {
+            _ = ScreenTransition.TransitionToScene("Menu");
+        }
+
         private void Start()
         {
             Singletons.Get<LevelController>()
